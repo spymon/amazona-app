@@ -8,7 +8,10 @@ import {
 } from '../constants/productConstants'
 
 export const productListReducer = (
-  state = { loading: true, products: [] },
+  state = {
+    loading: true,
+    products: [],
+  },
   action
 ) => {
   switch (action.type) {
