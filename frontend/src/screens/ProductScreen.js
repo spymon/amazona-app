@@ -7,7 +7,7 @@ import Rating from '../components/Rating'
 import { detailsProduct } from '../actions/productActions'
 
 export default function ProductScreen(props) {
-  const dispatch = useDispatch(state => state.detailsProduct)
+  const dispatch = useDispatch()
   const productId = props.match.params.id
   const [qty, setQty] = useState(1)
   const productDetails = useSelector(state => state.productDetails)
