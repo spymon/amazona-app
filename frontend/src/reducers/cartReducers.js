@@ -27,7 +27,6 @@ export const cartReducers = (
     case CART_REMOVE_ITEM:
       return {
         ...state,
-        error: '',
         cartItems: state.cartItems.filter(
           product => product.product !== action.payload
         ),
