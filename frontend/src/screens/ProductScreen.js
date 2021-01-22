@@ -17,7 +17,7 @@ export default function ProductScreen(props) {
     dispatch(detailsProduct(productId))
   }, [dispatch, productId])
 
-  const addToCardHandler = () => {
+  const addToCartHandler = () => {
     props.history.push(`/cart/${productId}?qty=${qty}`)
   }
 
@@ -29,7 +29,7 @@ export default function ProductScreen(props) {
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
         <div>
-          <Link to="/">Back to Results</Link>
+          <Link to="/">Back to Result</Link>
           <div className="row top">
             <div className="col-2">
               <img className="large" src={product.image} alt={product.name} />
@@ -95,7 +95,7 @@ export default function ProductScreen(props) {
                       </li>
                       <li>
                         <button
-                          onClick={addToCardHandler}
+                          onClick={addToCartHandler}
                           className="primary block"
                         >
                           Add to Card

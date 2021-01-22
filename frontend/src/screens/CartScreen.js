@@ -2,18 +2,16 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import MessageBox from '../components/MessageBox'
 import { useDispatch, useSelector } from 'react-redux'
-import { addToCart } from '../actions/cartActions'
+import { addToCart, removeFromCart } from '../actions/cartActions'
 
 export default function CartScreen(props) {
-  const dispatch = useDispatch()
-  const cart = useSelector(state => state.cart)
-  const { cartItems } = cart
   const productId = props.match.params.id
   const qty = props.location.search
     ? Number(props.location.search.split('=')[1])
     : 1
-
-  console.log(cartItems)
+  const cart = useSelector(state => state.cart)
+  const { cartItems } = cart
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (productId) {
@@ -22,10 +20,11 @@ export default function CartScreen(props) {
   }, [dispatch, productId, qty])
 
   const removeFromCartHandler = id => {
-    //delete action
+    // delete action
+    dispatch(removeFromCart(id))
   }
 
-  const chackoutHandler = () => {
+  const checkoutHandler = () => {
     props.history.push('/signin?redirect=shipping')
   }
 
@@ -35,7 +34,7 @@ export default function CartScreen(props) {
         <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (
           <MessageBox>
-            Cart is Empty. <Link to="/">Go shoping</Link>
+            Cart is Empty. <Link to="/">Go shopping</Link>
           </MessageBox>
         ) : (
           <ul>
@@ -67,8 +66,8 @@ export default function CartScreen(props) {
                   <div>${item.price}</div>
                   <div>
                     <button
-                      className="button"
-                      onClick={removeFromCartHandler(item.product)}
+                      type="button"
+                      onClick={() => removeFromCartHandler(item.product)}
                     >
                       Delete
                     </button>
@@ -92,7 +91,7 @@ export default function CartScreen(props) {
             <button
               className="primary block"
               type="button"
-              onClick={chackoutHandler}
+              onClick={checkoutHandler}
               disabled={cartItems.length === 0}
             >
               Proceed to Checkout
