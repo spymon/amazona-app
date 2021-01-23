@@ -5,8 +5,14 @@ import {
   productDetailsReducer,
   productListReducer,
 } from './reducers/productReducers'
+import { userSigninReducer } from './reducers/userReducers'
 
 const initialState = {
+  userSignin: {
+    userInfo: localStorage.getItem('userInfo')
+      ? JSON.parse(localStorage.getItem('userInfo'))
+      : null,
+  },
   cart: {
     cartItems: localStorage.getItem('cartItems')
       ? JSON.parse(localStorage.getItem('cartItems'))
@@ -18,6 +24,7 @@ const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
   cart: cartReducers,
+  userSignin: userSigninReducer,
 })
 
 //this activate redux DevTools
