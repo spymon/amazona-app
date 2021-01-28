@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { saveShippingAddress } from '../actions/cartActions'
 import CheckoutStep from '../components/CheckoutStep'
 
-export default function ShippingAdressScreen(props) {
+export default function ShippingAddressScreen(props) {
   const userSignin = useSelector(state => state.userSignin)
   const { userInfo } = userSignin
   const cart = useSelector(state => state.cart)
@@ -28,8 +28,6 @@ export default function ShippingAdressScreen(props) {
     )
     props.history.push('/payment')
   }
-
-  console.log(fullName)
 
   return (
     <div>
