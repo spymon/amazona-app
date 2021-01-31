@@ -1,13 +1,22 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { createOrder } from '../actions/orderAction'
 import CheckoutStep from '../components/CheckoutStep'
+import LoadingBox from '../components/LoadingBox'
+import MessageBox from '../components/MessageBox'
+import { ORDER_CREATE_RESET } from '../constants/orderConstants'
 
 export default function PlaceOrderScreen(props) {
   const cart = useSelector(state => state.cart)
   if (!cart.paymentMethod) {
     props.history.push('/payment')
   }
+
+  const orderCreate = useSelector(state => state.orderCreate)
+  console.log(orderCreate)
+  const { loading, success, error, order } = orderCreate
+
   // function to convert string number to number fixed to 2 decimals
   const toPrice = num => Number(num.toFixed(2))
   // item price sum
@@ -21,9 +30,17 @@ export default function PlaceOrderScreen(props) {
   // total price
   cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice
 
+  const dispatch = useDispatch()
   const placeOrderHandler = () => {
-    //TODO: dispatch place order action
+    dispatch(createOrder({ ...cart, orderItems: cart.cartItems }))
   }
+
+  useEffect(() => {
+    if (success) {
+      props.history.push(`/order/${order._id}`)
+      dispatch({ type: ORDER_CREATE_RESET })
+    }
+  }, [success, props.history, dispatch, order])
 
   return (
     <div>
@@ -124,6 +141,8 @@ export default function PlaceOrderScreen(props) {
                   Place Order
                 </button>
               </li>
+              {loading && <LoadingBox />}
+              {error && <MessageBox variant="danger">{error}</MessageBox>}
             </ul>
           </div>
         </div>

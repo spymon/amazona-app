@@ -1,6 +1,7 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
 import thunk from 'redux-thunk'
 import { cartReducers } from './reducers/cartReducers'
+import { orderCreateReducers } from './reducers/orderReducers'
 import {
   productDetailsReducer,
   productListReducer,
@@ -30,6 +31,7 @@ const reducer = combineReducers({
   cart: cartReducers,
   userSignin: userSigninReducer,
   userRegister: userRegisterReducer,
+  orderCreate: orderCreateReducers,
 })
 
 //this activate redux DevTools
