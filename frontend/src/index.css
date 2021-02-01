@@ -221,7 +221,7 @@ img.large {
   color: #a02020;
 }
 
-.alert {
+.allert {
   padding: 1rem;
   border: 0.1rem transparent solid;
   border-radius: 0.5rem;
@@ -234,7 +234,7 @@ img.large {
 
 .allert-danger {
   color: #a02020;
-  background-color: #ffe0e0;
+  background-color: #ffd8d8;
 }
 
 /* Form */
