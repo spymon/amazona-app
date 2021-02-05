@@ -4,6 +4,7 @@ import { cartReducers } from './reducers/cartReducers'
 import {
   orderCreateReducers,
   orderDetailsReducers,
+  orderMineListReducers,
   orderPayReducers,
 } from './reducers/orderReducers'
 import {
@@ -38,6 +39,7 @@ const reducer = combineReducers({
   orderCreate: orderCreateReducers,
   orderDetails: orderDetailsReducers,
   orderPay: orderPayReducers,
+  orderMineList: orderMineListReducers,
 })
 
 //this activate redux DevTools
