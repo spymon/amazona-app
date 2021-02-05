@@ -36,7 +36,7 @@ export default function SigninScreen(props) {
           <h1>Sign In</h1>
         </div>
         {loading && <LoadingBox />}
-        <MessageBox variant="danger">{error}</MessageBox>
+        {error && <MessageBox variant="danger">{error}</MessageBox>}
         <div>
           <label htmlFor="email">Email adress</label>
           <input
