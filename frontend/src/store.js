@@ -15,6 +15,7 @@ import {
   userDetailsRreducers,
   userRegisterReducer,
   userSigninReducer,
+  userUpdateProfileReducer,
 } from './reducers/userReducers'
 
 const initialState = {
@@ -45,6 +46,7 @@ const reducer = combineReducers({
   orderPay: orderPayReducers,
   orderMineList: orderMineListReducers,
   userDetails: userDetailsRreducers,
+  userUpdateProfile: userUpdateProfileReducer,
 })
 
 //this activate redux DevTools
